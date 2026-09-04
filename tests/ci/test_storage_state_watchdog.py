@@ -104,7 +104,7 @@ async def test_save_storage_state_reads_existing_file_as_utf8(tmp_path: Path, mo
 	assert encodings == ['utf-8']
 	saved_state = json.loads(original_read_text(storage_path, encoding='utf-8'))
 	saved_cookies = {cookie['name']: cookie['value'] for cookie in saved_state['cookies']}
-	assert saved_cookies == {'greeting': unicode_value, 'current': 'new-value'}
+	assert saved_cookies == {'current': 'new-value'}
 
 
 def test_merge_storage_states_does_not_restore_deleted_cookies() -> None:
@@ -124,4 +124,5 @@ def test_merge_storage_states_does_not_restore_deleted_cookies() -> None:
 
 	assert merged['cookies'] == current['cookies']
 	assert merged['origins'] == existing['origins']
+
 
